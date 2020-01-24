@@ -4,18 +4,35 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include<math.h>
 
 #define GLEW_STATIC
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+
+
 using namespace std;
+
+void dibujarSol() {
+	
+	
+
+	glBegin(GL_POLYGON);
+	glColor3f(1.0f, 1.0f, 0.0f);
+
+	for (double i = 0; i < 360.0; i += 5.0) {
+		
+		glVertex3f((0.2 * cos(i * 3.14159 / 180.0)) -.7, (0.2 * sin(i * 3.14159 / 180.0)) + .7,0.0f);
+	}
+	glEnd();
+}
 
 void dibujarCasa() {
 
 
-
+	//pared
 	glBegin(GL_POLYGON);
 
 	glColor3f(0.9f, 0.7f, 0.5f);
@@ -28,6 +45,7 @@ void dibujarCasa() {
 
 	glEnd();
 
+	//techo
 	glBegin(GL_TRIANGLES);
 
 	glColor3f(0.7f, 0.3f, 0.2f);
@@ -38,6 +56,8 @@ void dibujarCasa() {
 
 
 	glEnd();
+
+	//puerta
 
 	glBegin(GL_POLYGON);
 
@@ -50,6 +70,17 @@ void dibujarCasa() {
 	glVertex3f(0.3f, -0.2f, 0.0f);
 
 	glEnd();
+	
+	//perilla
+	glBegin(GL_POLYGON);
+	glColor3f(0.0f, 0.0f, 0.0f);
+
+	for (double i = 0; i < 360.0; i += 5.0) {
+
+		glVertex3f((0.04 * cos(i * 3.14159 / 180.0)) + 0.2, (0.04 * sin(i * 3.14159 / 180.0)) - 0.45 , 0.0f);
+	}
+	glEnd();
+
 }
 
 void dibujarCesped() {
@@ -136,8 +167,11 @@ void dibujarTriangulos(){
 
 //la rutina del dibujo
 void dibujar() {
+	
 	dibujarCasa();
 	dibujarCesped();
+	dibujarSol();
+	
 }
 
 int main()
